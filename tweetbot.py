@@ -1,12 +1,22 @@
-from selenium import webdriver
+import os
+try:
+    from selenium import webdriver
+except:
+    os.system("pip install selenium")
+    from selenium import webdriver
 
-from webdriver_manager.chrome import ChromeDriverManager
-
+try:
+    from webdriver_manager.chrome import ChromeDriverManager
+except:
+    os.system("pip install webdriver_manager")
+    from webdriver_manager.chrome import ChromeDriverManager
+    
 import random
 
-start=input()
+username = input("Enter your username : \t").strip()
+password = input("Enter your password : \t").strip()
+tweet = input("Enter your tweet : \t").strip()
 
-baba='your password here'
 """
 Soon the proper namings will be updated
 """
@@ -21,21 +31,22 @@ try:
         
         driver.implicitly_wait(15)
 
-        LoginCredentials = driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[1]/label/div/div[2]/div/input')
+        LoginCredentials = driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/form/div/div[1]/label/div/div[2]/div/input')
         
  
-        LoginCredentials.send_keys('Your user name here')
+        LoginCredentials.send_keys(username)
      
-        passWordBox = driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[2]/label/div/div[2]/div/input')
+        passWordBox = driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/form/div/div[2]/label/div/div[2]/div/input')
         
-        passWordBox.send_keys(baba)
+        passWordBox.send_keys(password)
 
-        loginButton = driver.find_elements_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/form/div/div[3]/div/div')
+        loginButton = driver.find_elements_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/form/div/div[3]/div')
         loginButton[0].click()
 
-        tweetBox = driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[3]/div/div/div[1]/div/div/div/div/div[2]/div[1]/div/div/div/div/div/div/div/div/div/div[1]/div/div/div/div[2]/div')
+
+        tweetBox = driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[3]/div/div/div[1]/div/div/div/div/div[2]/div[1]/div/div/div/div/div/div/div/div/label/div[1]/div/div/div/div/div[2]/div')
         
-        tweetBox.send_keys(r'Your Tweet here'+str(random.randint(1,100000000)))
+        tweetBox.send_keys(tweet+str(random.randint(1,100000000)))
         
         tweetButton = driver.find_elements_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/div/div/div/div[3]/div/div')
         tweetButton[0].click()
@@ -46,7 +57,9 @@ try:
         driver.close()
 
         dotweet()
+
     dotweet()
+    
 except:
     print('Tweet Failed')
     exit()
