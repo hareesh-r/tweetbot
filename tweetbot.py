@@ -46,7 +46,7 @@ try:
 
         tweetBox = driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[3]/div/div/div[1]/div/div/div/div/div[2]/div[1]/div/div/div/div/div/div/div/div/label/div[1]/div/div/div/div/div[2]/div')
         
-        tweetBox.send_keys(tweet+str(random.randint(1,100000000)))
+        tweetBox.send_keys(tweet+" "+str(random.randint(1,100000000)))
         
         tweetButton = driver.find_elements_by_xpath('//*[@id="react-root"]/div/div/div[2]/main/div/div/div[2]/div/div/div/div[3]/div/div')
         tweetButton[0].click()
